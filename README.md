@@ -1,5 +1,5 @@
 Deploys a Check Point Cloud Security Blueprint using Terraform with VMSS in both North (inbound) and South (Outbound) hubs.
-Publicly accesible Jumphost in West spoke and 2 x Web servers in East spoke.
+Public accessible Jumphost in West spoke and public load balanced web site (2 x Web servers) in East spoke.
 
 Needs:
 - terraform installed or run from Azure CLI
