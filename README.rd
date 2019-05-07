@@ -12,9 +12,6 @@ Needs:
         export ARM_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         export ARM_SUBSCRIPTION_ID="xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         export ARM_TENANT_ID="xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        export AWS_ACCESS_KEY_ID='XXXXXXXXXXXXXXXXX'
-        export AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        export AWS_REGION=eu-central-1
 
 Notes:
 - Management server communicate with gateways over public IPs
