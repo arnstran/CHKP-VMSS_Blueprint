@@ -17,8 +17,6 @@ Requirements:
 	- See documentation for more details
     https://sc1.checkpoint.com/documents/IaaS/WebAdminGuides/EN/CP_VMSS_for_Azure/html_frameset.htm
 
-Policy example:
-
 Notes:
 - Management server communicate with gateways over public IPs
 - R80.30 gateways will be deployed
