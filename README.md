@@ -1,5 +1,5 @@
 # CHKP-VMSS_Blueprint
-Deploys a Check Point Cloud Security Blueprint using Terraform with CloudGuard IaaS Scale Sets. North hub is used for inbound traffic and South hub is used for E/W and outbound traffic.
+Deploys a Check Point Cloud Security Blueprint in Azure using Terraform with CloudGuard IaaS Scale Sets. North hub is used for inbound traffic and South hub is used for E/W and outbound traffic.
 Public accessible Jumphost in East spoke and a public load balanced web site (2 x Web servers) in West spoke.
 
 Requirements:
