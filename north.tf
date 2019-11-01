@@ -1,5 +1,5 @@
 resource "random_string" "fqdn" {
- length  = 6
+ length  = 10
  special = false
  upper   = false
  number  = false
@@ -110,7 +110,7 @@ resource "azurerm_lb_rule" "lbwebrule" {
 ################# VMSS  ##################
 ##########################################
 
-# Check Point R80.20 BYOL (blink) VMSS with AZ
+# Check Point R80.30 BYOL VMSS with AZ
 resource "azurerm_virtual_machine_scale_set" "north" {
  name                = "NORTH"
  location            = "${var.location}"
@@ -120,7 +120,7 @@ resource "azurerm_virtual_machine_scale_set" "north" {
 
  plan {
     name = "sg-byol"
-    product = "check-point-cg-r8020-blink-v2"
+    product = "check-point-cg-r8030"
     publisher = "checkpoint"
  }
 
@@ -132,7 +132,7 @@ resource "azurerm_virtual_machine_scale_set" "north" {
 
  storage_profile_image_reference {
    publisher = "checkpoint"
-   offer     = "check-point-cg-r8020-blink-v2"
+   offer     = "check-point-cg-r8030"
    sku       = "sg-byol"
    version   = "latest"
  }
@@ -163,7 +163,7 @@ resource "azurerm_virtual_machine_scale_set" "north" {
 
 installationType = vmss \
 allowUploadDownload = True \
-osVersion = R80.20 \
+osVersion = R80.30 \
 templateName = vmss-v2 \
 isBlink = True \
 templateVersion = 20190320 \
@@ -200,7 +200,7 @@ vnet ="${var.north_cidr}"
       public_ip_address_configuration {
         name              = "instancePublicIP"
         idle_timeout      = 15
-        domain_name_label = "northvmss"
+        domain_name_label = "northvmss-${random_string.fqdn.result}"
       }
    }
  }
@@ -298,7 +298,7 @@ resource "azurerm_monitor_autoscale_setting" "test1" {
     email {
       send_to_subscription_administrator    = true
       send_to_subscription_co_administrator = true
-      custom_emails                         = ["astrand@checkpoint.com"]
+      custom_emails                         = ["${var.notify_email}"]
     }
   }
 }

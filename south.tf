@@ -90,7 +90,7 @@ resource "azurerm_lb_rule" "lb_haports_rule" {
 ################# VMSS  ##################
 ##########################################
 
-# Check Point R80.20 BYOL (blink) VMSS with AZ
+# Check Point R80.30 BYOL VMSS with AZ
 resource "azurerm_virtual_machine_scale_set" "south" {
  name                = "SOUTH"
  location            = "${var.location}"
@@ -100,7 +100,7 @@ resource "azurerm_virtual_machine_scale_set" "south" {
 
  plan {
     name = "sg-byol"
-    product = "check-point-cg-r8020-blink-v2"
+    product = "check-point-cg-r8030"
     publisher = "checkpoint"
  }
 
@@ -112,7 +112,7 @@ resource "azurerm_virtual_machine_scale_set" "south" {
 
  storage_profile_image_reference {
    publisher = "checkpoint"
-   offer     = "check-point-cg-r8020-blink-v2"
+   offer     = "check-point-cg-r8030"
    sku       = "sg-byol"
    version   = "latest"
  }
@@ -143,7 +143,7 @@ resource "azurerm_virtual_machine_scale_set" "south" {
 
 installationType = vmss \
 allowUploadDownload = True \
-osVersion = R80.20 \
+osVersion = R80.30 \
 templateName = vmss-v2 \
 isBlink = True \
 templateVersion = 20190320 \
@@ -179,7 +179,7 @@ vnet ="${var.south_cidr}"
       public_ip_address_configuration {
         name              = "instancePublicIP"
         idle_timeout      = 15
-        domain_name_label = "southvmss"
+        domain_name_label = "southvmss-${random_string.fqdn.result}"
       }
    }
  }
@@ -278,7 +278,7 @@ resource "azurerm_monitor_autoscale_setting" "test2" {
     email {
       send_to_subscription_administrator    = true
       send_to_subscription_co_administrator = true
-      custom_emails                         = ["astrand@checkpoint.com"]
+      custom_emails                         = ["${var.notify_email}"]
     }
   }
 }

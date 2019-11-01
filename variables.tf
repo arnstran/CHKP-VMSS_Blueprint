@@ -28,12 +28,12 @@ variable "east_cidr" {
 
 # must match what was used in autoprov-cfg config
 variable "management" {
-  default = "management-server"
+  default = "mgmt"
 }
 
 # must match what was used in autoprov-cfg config
 variable "template" {
-  default = "VMSStemplate"
+  default = "vmss-template"
 }
 
 # must match what was used in autoprov-cfg config
@@ -46,7 +46,11 @@ variable "admin_password" {
 }
 
 variable "ssh_key" {
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAL7KHpD"
+  default = "ssh-rsa ......"
+}
+
+variable "notify_email" {
+  default = ""
 }
 
 variable "envtags" {
@@ -78,6 +82,10 @@ variable "vm_name1" {
 
 variable "vm_name2" {
   default = "Web-West02"
+}
+
+variable "bootstrap" {
+  default = ""
 }
 
 variable "ubuntu_user_data" {
